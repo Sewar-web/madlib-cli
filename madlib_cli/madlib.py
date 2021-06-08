@@ -3,12 +3,13 @@ import re
 files=" "
 
 word=[]
+print('Welcome to make Me A Video Game!')
 def read_template():
     
     try:
         with open('text/template.txt') as file:
             files=file.read()
-            # print(files)
+            print(files)
             parse_template(files) 
     except FileNotFoundError:
             print('the path is invalid') 
@@ -24,7 +25,7 @@ def parse_template(files):
     regex = r"\{(.*?)\}"
     reg=re.findall(regex, files)
     print(reg)
-    # print(len(reg))
+    print(len(reg))
      
     input_fun(reg ,files)
 
