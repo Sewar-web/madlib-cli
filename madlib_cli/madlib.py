@@ -39,3 +39,21 @@ def merge(text,parse):
     return newtxt
 
 
+def midlab():
+
+
+    text_origin=read_template('text/template.txt')
+
+    text,parse= parse_template(text_origin)
+    array_word=[]
+    for s in parse:
+        words=input(f'Enter a {s} ')
+        array_word.append(words)
+    
+    new_text=merge(text,array_word)
+    
+    return new_text
+
+
+if __name__=='__main__':
+  print (midlab())
