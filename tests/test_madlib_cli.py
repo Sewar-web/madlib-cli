@@ -1,21 +1,42 @@
+import pytest
+
+
+from madlib_cli.madlib import read_template, parse_template, merge
 from madlib_cli import __version__
-from madlib_cli.madlib import read_template ,parse_template,merg
 
 
 def test_version():
     assert __version__ == '0.1.0'
 
 
-def test_read_it():
-    actu=read_template('text/template.txt')
-    aspp='the path is invalid'
-    assert actu != aspp
-def test_prse_it():
-        assert parse_template('text/template.txt')== r"\{(.*?)\}"
-def merg_it():
-            ac1='text/template.txt'
-            ac2=r"\{(.*?)\}"
-            assert merg(ac1 and ac2)== True
+def test_read_template_returns_stripped_string():
+    actual = read_template("text/text.text")
+    expected = "It was a dark and stormy night."
+    assert actual == expected
 
 
+# @pytest.mark.skip("pending")
+def test_parse_template():
+    actual_stripped, actual_parts = parse_template(
+        "It was a {Adjective} and {Adjective} {Noun}."
+    )
+    expected_stripped = "It was a {} and {} {}."
+    expected_parts = ("Adjective", "Adjective", "Noun")
 
+    assert actual_stripped == expected_stripped
+    assert actual_parts == expected_parts
+
+
+# @pytest.mark.skip("pending")
+def test_merge():
+    actual = merge("It was a {} and {} {}.", ("dark", "stormy", "night"))
+    expected = "It was a dark and stormy night."
+    assert actual == expected
+
+
+# @pytest.mark.skip("pending")
+def test_read_template_raises_exception_with_bad_path():
+
+    with pytest.raises(FileNotFoundError):
+        path = "missing.txt"
+        read_template(path)
