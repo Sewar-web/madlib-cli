@@ -9,7 +9,7 @@ def test_version():
     assert __version__ == '0.1.0'
 
 
-def test_read_template_returns_stripped_string():
+def test_read_template():
     actual = read_template("text/text.text")
     expected = "It was a dark and stormy night."
     assert actual == expected
@@ -35,7 +35,7 @@ def test_merge():
 
 
 # @pytest.mark.skip("pending")
-def test_read_template_raises_exception_with_bad_path():
+def test_bad_path():
 
     with pytest.raises(FileNotFoundError):
         path = "missing.txt"
